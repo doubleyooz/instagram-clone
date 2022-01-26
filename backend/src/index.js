@@ -1,26 +1,17 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
-const cors = require('cors');
+import mongoose from 'mongoose';
+import http from 'http';
+//import io from 'socket.io';
 
-const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+import { app } from './config/express.config.js';
 
-mongoose.connect('mongodb+srv://Waifu:Saiki123@cluster0-c09yq.mongodb.net/test?retryWrites=true&w=majority', {
-    useNewUrlParser: true
+const server = http.Server(app);
+
+mongoose.connect(`${process.env.DB_CONNECTION}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
 });
 
-app.use((req, res, next)=>{
-    req.io = io;
-    next();
+server.listen(parseInt(`${process.env.PORT}`), () => {
+    console.log(`Listening on port ${process.env.PORT}`);
 });
-
-app.use(cors());
-app.use('/files', express.static(path.resolve(__dirname, '..', 'Uploads', 'resized')));
-
-app.use(require('./routes'));
-server.listen(3333);
-
-
-

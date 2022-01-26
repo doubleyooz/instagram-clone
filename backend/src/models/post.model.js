@@ -1,6 +1,7 @@
-const mongoose  = require('mongoose');
+import mongoose from 'mongoose';
 
-const PostSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema(
+    {
         author: String,
         place: String,
         description: String,
@@ -9,10 +10,11 @@ const PostSchema = new mongoose.Schema({
         likes: {
             type: Number,
             default: 0,
-        }       
-    }, {
-    timestamps: true,
-    
-});
+        },
+    },
+    {
+        timestamps: true,
+    },
+);
 
-module.exports = mongoose.model('Post', PostSchema);
+export default mongoose.model('Post', PostSchema);

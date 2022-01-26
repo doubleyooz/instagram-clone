@@ -20,7 +20,7 @@ MOBILE
     - typescript
     - react-native
 
-This code was inittialy made following a tutorial in 2018/2019. 
+This code was initially made following a tutorial in 2018/2019. 
 
 Currently I am working with the Backend of the project.
 The Frontend and Mobile parts will be updated in the future.

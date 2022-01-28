@@ -2,14 +2,13 @@ import mongoose from 'mongoose';
 
 const PostSchema = new mongoose.Schema(
     {
-        author: String,
+        author: mongoose.Schema.Types.ObjectId,
         place: String,
         description: String,
         hashtags: String,
         image: String,
         likes: {
-            type: Number,
-            default: 0,
+            type: mongoose.Schema.Types.ObjectId,
         },
     },
     {

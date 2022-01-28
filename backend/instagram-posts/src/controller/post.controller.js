@@ -1,7 +1,7 @@
 import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs';
-import Post from '../models/post.model.js';
+import Post from '../model/post.model.js';
 
 async function index(req, res) {
     const posts = await Post.find().sort('-createdAt');
@@ -9,7 +9,7 @@ async function index(req, res) {
 }
 
 async function store(req, res) {
-    const { author, place, description, hashtags } = req.body;
+    const { place, description, hashtags } = req.body;
     const { filename: image } = req.file;
 
     const [name] = image.split('.');
@@ -22,8 +22,7 @@ async function store(req, res) {
 
     fs.unlinkSync(req.file.path);
 
-    const post = await Post.create({
-        author,
+    const post = await Post.create({        
         place,
         description,
         hashtags,

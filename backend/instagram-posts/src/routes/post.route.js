@@ -1,10 +1,10 @@
 import express from 'express';
 import multer from 'multer';
 
-import PostController from '../controller/post.controller.js';
-import LikeController from '../controller/like.controller.js';
+import PostController from '../controllers/post.controller.js';
+import LikeController from '../controllers/like.controller.js';
 
-import PostMiddleware from '../middleware/post.middleware.js';
+import PostMiddleware from '../middlewares/post.middleware.js';
 
 import files from '../config/multer.config.js';
 

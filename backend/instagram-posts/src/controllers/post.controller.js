@@ -1,7 +1,7 @@
 import sharp from 'sharp';
 import path from 'path';
 import fs from 'fs';
-import Post from '../model/post.model.js';
+import Post from '../models/post.model.js';
 
 async function index(req, res) {
     const posts = await Post.find().sort('-createdAt');

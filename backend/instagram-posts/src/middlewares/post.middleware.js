@@ -1,6 +1,6 @@
 import {object} from 'yup';
 
-import { rules } from '../util/yup.util.js';
+import { rules } from '../utils/yup.util.js';
 
 async function valid_store(req, res, next) {
     let schema = object().shape({

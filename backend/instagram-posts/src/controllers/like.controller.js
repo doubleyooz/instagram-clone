@@ -1,4 +1,4 @@
-import Post from '../model/post.model.js';
+import Post from '../models/post.model.js';
 
 async function store(req, res) {
     const post = await Post.findById(req.params.id);

@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 //import cookieParser from 'cookie-parser';
 
-import postRoute from '../route/post.route.js';
+import postRoute from '../routes/post.route.js';
 
 import corsOptionsDelegate from './cors.config.js';
 import limiter from './limiter.config.js';

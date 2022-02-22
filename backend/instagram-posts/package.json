@@ -5,7 +5,16 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "NODE_ENV=dev nodemon -r dotenv/config src/index.js dotenv_config_path=./.env.dev"
+    "start:dev": "NODE_ENV=dev nodemon -r dotenv/config src/index.js dotenv_config_path=./.env.dev",
+    "dc:up": "sudo docker-compose --env-file .env.dev up",
+    "dc:down": "sudo docker-compose --env-file .env.dev down",
+    "dc:deepdown": "yarn dc:delete:volumes && yarn dc:delete:folder",
+    "dc:stop": "sudo docker-compose --env-file .env.dev stop",
+    "dc:delete:volumes": "sudo docker-compose --env-file .env.dev down -v",
+    "dc:delete:folder": "sudo rm -rf /usr/app2/v",
+    "dc:build": "sudo docker-compose --env-file .env.dev build",
+    "dc:restart": "sudo docker restart insta-post",
+    "dc:stop:server": "sudo docker stop insta-post"
   },
   "dependencies": {
     "cors": "^2.8.5",

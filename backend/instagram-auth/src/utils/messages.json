@@ -3,6 +3,7 @@
     "default.unauthorized": "Unauthorized request.",
     "default.success": "Successful request.",
     "default.badRequest": "You didn't give us what we want!",
+    "default.serverError": "It's not you, it's us.",
     "invalid.uuid": "Invalid uuid.",
 
     "user.invalid.password": "Invalid Password",

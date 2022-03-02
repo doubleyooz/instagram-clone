@@ -2,7 +2,10 @@ import mongoose from 'mongoose';
 
 const PostSchema = new mongoose.Schema(
     {
-        author: mongoose.Schema.Types.ObjectId,
+        author: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        },
         place: String,
         description: String,
         hashtags: String,

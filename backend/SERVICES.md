@@ -1,7 +1,7 @@
 # SERVICES
 
 ## instagram-auth typescript
-#### grpc, mongoose, jsonwebtoken, yup, bcrypt
+#### grpc, mongoose, jsonwebtoken, bcrypt
 
 ```ts
 #user
@@ -19,7 +19,7 @@ auth();
 
 
 ## instagram-post javascript
-#### grpc, mongoose, yup
+#### grpc, mongoose
 
 ```ts
 #post

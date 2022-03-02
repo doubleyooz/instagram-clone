@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package post;
+
+message PostRequest {
+  string place = 1;
+  string description = 2;
+  string hashtags = 3;
+  optional string _id = 4;
+  
+}
+
+message PostResponse {
+  PostRequest post = 1;
+  string error = 2;
+}
+
+message FindOneRequest {
+  string _id = 1;
+}
+
+message CreateRequest {
+  PostRequest post = 1;
+  bytes binary = 2;
+}
+
+message ListRequest {
+    optional string user_id = 1;
+}
+
+message ListResponse {
+    repeated PostRequest list = 1;
+}
+service PostService {
+  rpc create(stream CreateRequest) returns (PostResponse);
+  rpc findOne(FindOneRequest) returns (PostResponse);  
+  rpc find(ListRequest) returns (ListResponse);
+
+  rpc like(FindOneRequest) returns (PostResponse);
+ 
+}

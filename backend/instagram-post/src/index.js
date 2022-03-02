@@ -1,18 +1,29 @@
-import mongoose from 'mongoose';
-import http from 'http';
-//import io from 'socket.io';
+import 'dotenv/config';
 
-import { app } from './config/express.config.js';
+import * as grpc from '@grpc/grpc-js';
+import * as protoLoader from '@grpc/proto-loader';
+//import { ProtoGrpcType as AuthService } from '../proto/build/auth.service';
+//import { ProtoGrpcType as PostService } from '../proto/build/post.service';
+import PostController from './controllers/post.controller.js';
 
-const server = http.Server(app);
+const host = process.env.HOST ? process.env.HOST : '0.0.0.0:9090';
 
-const connectOptions = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-};
+function getServer() {
+    const proto = grpc.loadPackageDefinition(
+        protoLoader.loadSync('./proto/services/post.service.proto'),
+    );
 
-mongoose.connect(`${process.env.DB_CONNECTION}`, connectOptions);
+    const server = new grpc.Server();
+    server.addService(proto.post.PostService.service, PostController);
+    return server;
+}
 
-server.listen(parseInt(`${process.env.PORT}`), () => {
-    console.log(`Listening on port ${process.env.PORT}`);
+const server = getServer();
+server.bindAsync(host, grpc.ServerCredentials.createInsecure(), (err, port) => {
+    if (err) {
+        console.error(`Server error: ${err.message}`);
+    } else {
+        console.log(`Server bound on port: ${port}`);
+        server.start();
+    }
 });

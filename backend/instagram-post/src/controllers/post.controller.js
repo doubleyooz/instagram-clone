@@ -1,37 +1,82 @@
-import sharp from 'sharp';
-import path from 'path';
-import fs from 'fs';
+import mongoose from 'mongoose';
 import Post from '../models/post.model.js';
+import { treatImage, upload } from '../utils/image.util.js';
 
-async function index(req, res) {
-    const posts = await Post.find().sort('-createdAt');
-    return res.json(posts);
+async function findOne(call, callback) {
+    const { _id } = call.request;
+
+    Post.findById(_id)
+        .then(doc => {
+            if (!doc)
+                return callback(null, {
+                    error: getMessage('default.notfound'),
+                });
+
+            return callback(null, {
+                post: { ...doc.toObject(), _id: doc._id },
+            });
+        })
+        .catch(err => {
+            return callback(null, { error: getMessage('default.serverError') });
+        });
 }
 
-async function store(req, res) {
-    const { place, description, hashtags } = req.body;
-    const { filename: image } = req.file;
+async function find(call, callback) {
+    Post.find()
+        .sort('-createdAt')
+        .then(result => {
+            return callback(null, {
+                posts: result,
+            });
+        })
+        .catch(err => {
+            return callback(null, { error: getMessage('default.serverError') });
+        });
+}
+
+async function store(call, callback) {
+    const { place, description, hashtags } = call.request;
 
     const [name] = image.split('.');
     const fileName = `${name}.jpg`;
 
-    await sharp(req.file.path)
-        .resize(500)
-        .jpeg({ quality: 70 })
-        .toFile(path.resolve(req.file.destination, 'resized', fileName));
+    const res = new UploadImageResponse();
+    const chunks = [];
 
-    fs.unlinkSync(req.file.path);
-
-    const post = await Post.create({        
-        place,
-        description,
-        hashtags,
-        image: fileName,
+    call.on(READABLE_STREAM_EVENT.DATA, chunk => {
+        chunks.push(chunk.getBinary_asU8());
     });
+    call.on(READABLE_STREAM_EVENT.END, async () => {
+        const desiredSize = { width: 250, height: 250 }; // consider getting these values in request
+        const imageBuff = Buffer.concat(chunks);
+        const resized = await treatImage(
+            imageBuff,
+            desiredSize.width,
+            desiredSize.height,
+        );
+        // you may want to replace this with a S3 pipe etc.
+        await upload(resized, fileName);
 
-    req.io.emit('post', post);
-
-    return res.json(post);
+        Post.create({
+            place,
+            description,
+            hashtags,
+            image: fileName,
+        })
+            .then(result => {
+                callback(null, result);
+            })
+            .catch(e => {
+                console.log(e);
+                return callback(null, {
+                    error: getMessage('default.serverError'),
+                });
+            });
+    });
+    call.on(READABLE_STREAM_EVENT.ERROR, err => {
+        console.error(err);
+        callback(err, res);
+    });
 }
 
-export default { store, index };
+export default { store, findOne, find };

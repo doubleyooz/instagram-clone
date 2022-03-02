@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "build:proto": "yarn dc:delete:folder proto/build && ./node_modules/.bin/proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=proto/build proto/services/*.proto",
     "start:dev": "NODE_ENV=dev nodemon -r dotenv/config src/index.js dotenv_config_path=./.env.dev",
     "dc:up": "sudo docker-compose --env-file .env.dev up",
     "dc:down": "sudo docker-compose --env-file .env.dev down",
@@ -17,10 +18,11 @@
     "dc:stop:server": "sudo docker stop insta-post"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.5.7",
+    "@grpc/proto-loader": "^0.6.9",
     "cors": "^2.8.5",
     "dotenv": "^14.3.2",
-    "express": "^4.17.1",
-    "express-rate-limit": "^6.2.0",
+    "grpc-tools": "^1.11.2",
     "mongoose": "^5.5.15",
     "multer": "^1.4.4",
     "sharp": "^0.29.3",

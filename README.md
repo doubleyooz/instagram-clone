@@ -1,26 +1,20 @@
 INSTAGRAM CLONE
 
-BACKEND
-    - INSTAGRAM-AUTH
-        - typescript
-        - express
-        - multer
-        - jwt
-    - INSTAGRAM-POSTS
-        - javascript
-        - express
-        - multer
-        - io
+### BACKEND
+- [Api](https://github.com/WaifuForever/instagram-clone/blob/master/backend/APIs.md)
+- [Services](https://github.com/WaifuForever/instagram-clone/blob/master/backend/SERVICES.md)
 
-FRONTEND
-    - typescript
-    - react
 
-MOBILE
-    - typescript
-    - react-native
+### FRONTEND
+- typescript
+- react
+- tailwind
+
+### MOBILE
+- typescript
+- react-native
 
 This code was initially made following a tutorial in 2018/2019. 
 
-Currently I am working with the Backend of the project.
-The Frontend and Mobile parts will be updated in the future.
+Currently I am working with the Backend and the Frontend of this project.
+The Mobile code will be updated in the future. Maybe in its own repository.

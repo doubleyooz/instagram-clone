@@ -1,9 +1,18 @@
 # APIs
 ## comments-api typescript
-#### express, cors, mongoose, jsonwebtoken, yup, bcrypt
+- express
+- cors
+- mongoose
+- jsonwebtoken 
+- yup
+
 REST
 
+## post-api javascript
+- express
+- cors
+- mongoose
+- jsonwebtoken 
+- yup
 
-## post-api typescript
-#### express, cors, mongoose, jsonwebtoken, yup, bcrypt
 REST

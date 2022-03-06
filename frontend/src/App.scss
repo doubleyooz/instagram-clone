@@ -1,3 +1,61 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .wordmark-m {
+    @apply mt-6 mb-3 mx-auto;
+  }
+
+  .wordmark {
+    @apply w-[175px] h-[51px] bg-no-repeat bg-title bg-icon;
+  }
+
+  .wordmark-d {
+    @apply overflow-hidden block indent-[110%] whitespace-nowrap
+  }
+
+  .flex-page {
+    @apply flex flex-row
+  }
+
+  .card {
+    @apply text-[#262626] flex flex-grow justify-center mt-3 max-w-[350px] w-96 h-[567px]
+  }
+
+  .box {
+    @apply items-center mb-2.5 py-2.5 border border-[#dbdbff] rounded-[1px] bg-[#ffffff];
+  }
+
+  .form-container {
+    @apply mb-3 max-w-[350px] w-[100%] mt-6 flex justify-start items-stretch 
+  }
+  
+  .field {
+    @apply px-10 pb-1 w-full font text-sm flex items-center relative;
+    label {
+      @apply flex flex-[1_0_0] h-9 m-0 p-0 text-[#262626] cursor-default relative;
+      span{
+        @apply absolute text-[#8e8e8e] left-2 right-0 whitespace-nowrap origin-left ease-in duration-100 h-9 text-xs pointer-events-none align-baseline text-ellipsis
+      }
+    }
+    
+    input {
+      @apply font text-[#1a1a1a] leading-[18px] pt-[9px] pb-[7px] pl-2 overflow-ellipsis text-xs border-0 overflow-hidden flex-[1_0_auto]
+    }
+  }
+
+ 
+
+  .submit {
+    @apply my-2 mx-40 flex 
+  }
+
+  .font{
+    @apply font-roboto text-sm
+  }
+
+  .button {
+    @apply cursor-pointer opacity-100 rounded block font
+  }
+}

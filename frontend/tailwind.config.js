@@ -4,7 +4,12 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
 
   theme: {
+    fontFamily: {
+      roboto: ['roboto', 'sans-serif'],
+    },
     extend: {
+      
+      
       backgroundImage: {
         icon: "url('https://www.instagram.com/static/bundles/es6/sprite_core_32f0a4f27407.png/32f0a4f27407.png')",
       },

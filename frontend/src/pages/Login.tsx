@@ -1,45 +1,51 @@
+import React, { useState } from "react";
+
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div className="flex-page justify-center">
       <div className="card">
         <div className="box">
           <div className="wordmark wordmark-m wordmark-d" />
 
-          <div className="form-container">
-            <form className="flex flex-col" action="">
-              <div className="field">
-                <label>
-                  <span>Phone number, username, or email</span>
-                  <input
+          <form className="form-container" action="">
+            <div className={email === "" ? "field" : "field float"}>
+              <label>
+                <span>Phone number, username, or email</span>
+                <input
                   type="text"
                   name="email"
-                  id="email"                 
+                  id="email"
+                  onInput={(e) =>
+                    setEmail((e.target as HTMLInputElement).value)
+                  }
                 />
-                </label>
-              
-              </div>
-              <div className="field">
-                <label>
-                  <span>Password</span>
-                  <input
-                  type="text"
-                  name="email"
-                  id="email"                 
+              </label>
+            </div>
+            <div className={password === "" ? "field" : "field float"}>
+              <label>
+                <span>Password</span>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  onInput={(e) =>
+                    setPassword((e.target as HTMLInputElement).value)
+                  }
                 />
-                </label>
-              
-              </div>
+              </label>
+            </div>
 
-              <div className="submit">
-                <button
-                  type="submit"
-                  className="button bg-[#0031f6] text-[#ffffff] w-auto"
-                >
-                  Login
-                </button>
-              </div>
-            </form>
-          </div>
+            <div className={password === "" ? "submit" : email === "" ? "submit" : "submit ready"}>
+              <button
+                type="submit"              
+              >
+                Log In
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ module.exports = {
         title: "0 -130px"
       }
     },
-    colors: { ...colors, button: "#0764e6" },
+    colors: { ...colors, transparent: 'transparent', button: "#0764e6" },
   },
   variants: {
     extend: {},

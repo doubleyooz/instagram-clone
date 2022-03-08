@@ -4,7 +4,7 @@
 
 @layer components {
   .wordmark-m {
-    @apply mt-6 mb-3 mx-auto;
+    @apply mt-[22px] mb-3 mx-auto;
   }
 
   .wordmark {
@@ -12,50 +12,62 @@
   }
 
   .wordmark-d {
-    @apply overflow-hidden block indent-[110%] whitespace-nowrap
+    @apply overflow-hidden block indent-[110%] whitespace-nowrap;
   }
 
   .flex-page {
-    @apply flex flex-row
+    @apply flex flex-row;
   }
 
   .card {
-    @apply text-[#262626] flex flex-grow justify-center mt-3 max-w-[350px] w-96 h-[567px]
+    @apply text-[#262626] flex flex-grow justify-center mt-3 max-w-[350px] w-[348px] h-[567px];
   }
 
   .box {
-    @apply items-center mb-2.5 py-2.5 border border-[#dbdbff] rounded-[1px] bg-[#ffffff];
+    @apply items-center w-full mb-2.5 py-2.5 border border-[#dbdbff] rounded-[1px] bg-[#ffffff];
   }
 
   .form-container {
-    @apply mb-3 max-w-[350px] w-[100%] mt-6 flex justify-start items-stretch 
+    @apply mb-[10px] w-[100%] pt-6 px-10 flex flex-col flex-[1_0_auto] items-center;
   }
-  
-  .field {
-    @apply px-10 pb-1 w-full font text-sm flex items-center relative;
+
+  .float {
     label {
-      @apply flex flex-[1_0_0] h-9 m-0 p-0 text-[#262626] cursor-default relative;
-      span{
-        @apply absolute text-[#8e8e8e] left-2 right-0 whitespace-nowrap origin-left ease-in duration-100 h-9 text-xs pointer-events-none align-baseline text-ellipsis
+      span {
+        @apply transform -translate-y-3 scale-[0.8] origin-left ease-out duration-100;
       }
     }
-    
-    input {
-      @apply font text-[#1a1a1a] leading-[18px] pt-[9px] pb-[7px] pl-2 overflow-ellipsis text-xs border-0 overflow-hidden flex-[1_0_auto]
+  }
+
+  .field {
+    @apply pb-1 max-w-[350px] w-full h-9 mx-10 mb-[6px] font text-sm flex flex-row justify-start items-stretch relative;
+    label {
+      @apply relative w-full h-9 cursor-default border border-solid border-[#dbdbdbd9] rounded-[3px];
+      span {
+        @apply absolute left-2 right-0  text-[#262626] text-xs h-9 leading-[36px] overflow-hidden overflow-ellipsis whitespace-nowrap origin-left align-baseline text-ellipsis;
+      }
+      input {
+        @apply font w-full py-2 pb-[7px] text-[#1a1a1a] overflow-hidden text-xs overflow-ellipsis outline-none border-0 flex-[1_0_auto];
+      }
     }
   }
 
- 
+  .ready {
 
-  .submit {
-    @apply my-2 mx-40 flex 
   }
 
-  .font{
-    @apply font-roboto text-sm
+  .submit {
+    @apply flex flex-[1_0_auto] px-10 py-2 justify-start items-stretch;
+    button {
+      @apply button bg-button px-[9px] py-[5px] text-center text-[#ffffff];
+    }
+  }
+
+  .font {
+    @apply font-roboto text-sm;
   }
 
   .button {
-    @apply cursor-pointer opacity-100 rounded block font
+    @apply cursor-pointer opacity-100 border border-solid border-transparent rounded-[4px] block font;
   }
 }

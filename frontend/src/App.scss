@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer components {
+  body {
+    @apply bg-background
+  }
+
   .wordmark-m {
     @apply mt-[22px] mb-3 mx-auto;
   }
@@ -34,40 +38,47 @@
   .float {
     label {
       span {
-        @apply transform -translate-y-3 scale-[0.8] origin-left ease-out duration-100;
+        @apply transform -translate-y-3 scale-[0.83333];
       }
     }
   }
 
   .field {
-    @apply pb-1 max-w-[350px] w-full h-9 mx-10 mb-[6px] font text-sm flex flex-row justify-start items-stretch relative;
+    @apply max-w-[350px] w-full mx-10 mb-[6px] font-sans text-sm flex flex-row justify-start items-stretch relative;
     label {
-      @apply relative w-full h-9 cursor-default border border-solid border-[#dbdbdbd9] rounded-[3px];
+      @apply relative w-full cursor-default focus-visible:outline-black appearance-none focus-visible:border-[#000000] box-content border border-solid border-[#dbdbdbd9] rounded-[3px];
       span {
-        @apply absolute left-2 right-0  text-[#262626] text-xs h-9 leading-[36px] overflow-hidden overflow-ellipsis whitespace-nowrap origin-left align-baseline text-ellipsis;
+        @apply absolute origin-left ease-out duration-100 left-2 right-0 text-[#8e8e8e] text-[12px] h-9 leading-[32px] overflow-hidden overflow-ellipsis whitespace-nowrap align-baseline text-ellipsis;
       }
       input {
-        @apply font w-full py-2 pb-[7px] text-[#1a1a1a] overflow-hidden text-xs overflow-ellipsis outline-none border-0 flex-[1_0_auto];
+        @apply font-sans bg-background w-full h-9 pl-2 pt-[9px] pb-[7px] text-[#000000] overflow-hidden text-xs overflow-ellipsis outline-none border-0 flex-[1_0_auto];
       }
     }
   }
 
   .ready {
-
-  }
+    @apply bg-buttonReady
+  }   
 
   .submit {
-    @apply flex flex-[1_0_auto] px-10 py-2 justify-start items-stretch;
+    @apply relative flex flex-[1_0_auto] w-full mx-10 my-2 justify-start items-stretch;
     button {
-      @apply button bg-button px-[9px] py-[5px] text-center text-[#ffffff];
+      @apply button w-full px-[9px] py-[5px] text-sm text-center text-[#ffffff] font-bold;
     }
   }
 
-  .font {
-    @apply font-roboto text-sm;
+  .button {
+    @apply cursor-pointer bg-button leading-[18px] rounded block font-sans;
   }
 
-  .button {
-    @apply cursor-pointer opacity-100 border border-solid border-transparent rounded-[4px] block font;
+  .delimiter {
+    @apply mx-10 w-full mt-[10px] mb-[18px] flex flex-row;
+    .trace {
+      @apply relative top-[7.2px] flex-grow flex-shrink h-[1px] border-b border-[#dbdbdb]
+    }
+
+    .or {
+      @apply text-[#8e8e8e] flex-grow-0 flex-shrink-0 text-[13px] mx-[18px] uppercase
+    }
   }
 }

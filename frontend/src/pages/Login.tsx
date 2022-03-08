@@ -5,7 +5,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   return (
-    <div className="flex-page justify-center">
+    <div className="flex-page justify-center mb-11">
       <div className="card">
         <div className="box">
           <div className="wordmark wordmark-m wordmark-d" />
@@ -44,6 +44,12 @@ const Login = () => {
               >
                 Log In
               </button>
+            </div>
+
+            <div className="delimiter">
+              <div className="trace"></div>
+              <div className="or">or</div>
+              <div className="trace"></div>
             </div>
           </form>
         </div>

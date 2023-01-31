@@ -1,8 +1,9 @@
 INSTAGRAM CLONE
 
 ### BACKEND
-- [Api](https://github.com/WaifuForever/instagram-clone/blob/master/backend/APIs.md)
-- [Services](https://github.com/WaifuForever/instagram-clone/blob/master/backend/SERVICES.md)
+- nestjs
+- mongodb
+
 
 
 ### FRONTEND

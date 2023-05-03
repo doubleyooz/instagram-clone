@@ -15,14 +15,14 @@ import {
   Logger,
 } from '@nestjs/common';
 
-import { CreateUserDTO } from './dto/create.user.request.dto';
-import { UpdateUserDTO } from './dto/update.user.request.dto';
+import { CreateUserDTO } from './dto/create.user.dto';
+import { UpdateUserDTO } from './dto/update.user.dto';
 import { UserService } from './user.service';
-import { FindUserByIdDTO } from './dto/find.user.request.dto';
+import { FindByIdDTO } from '@app/common';
 import { AccessTokenGuard } from '../guards/access.token.guard';
 import { JwtPayload } from '../auth.service';
 import { PayloadPipe } from '../utils/pipes/payload.exist.pipe';
-import { FindAllUsersDTO } from './dto/find.all.users.request.dto';
+import { FindAllUsersDTO } from './dto/find.all.users.dto';
 
 @Controller('users')
 export class UserController {
@@ -36,7 +36,7 @@ export class UserController {
   }
 
   @Get(':_id')
-  async findOneUser(@Param() param: FindUserByIdDTO) {
+  async findOneUser(@Param() param: FindByIdDTO) {
     this.logger.log(`Finding the user that has this _id: ${param._id}`);
     const user = await this._service.findUserById(param);
 
@@ -63,7 +63,7 @@ export class UserController {
   @UsePipes(PayloadPipe)
   @Put(':_id')
   async updateUser(
-    @Param() filter: FindUserByIdDTO,
+    @Param() filter: FindByIdDTO,
     @Body() body: UpdateUserDTO,
     @Req() request,
   ) {
@@ -81,7 +81,7 @@ export class UserController {
 
   @UseGuards(AccessTokenGuard)
   @Delete(':_id')
-  async deleteUserById(@Param() filter: FindUserByIdDTO, @Req() request) {
+  async deleteUserById(@Param() filter: FindByIdDTO, @Req() request) {
     if (filter._id != request.user._id) {
       this.logger.warn(`User with ID ${filter._id} not found`);
       throw new UnauthorizedException(

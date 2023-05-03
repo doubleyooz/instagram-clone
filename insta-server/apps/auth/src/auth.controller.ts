@@ -21,7 +21,7 @@ export class AuthController {
   @Post('login')
   async login(
     @Body() request: LoginDTO,
-    @Res({ passthrough: true }) reply: FastifyReply,
+    @Res({ passthrough: true }) reply,
   ): Promise<User & { accessToken: string }> {
     this.logger.log(`Trying to log the user with this email: ${request.email}`);
     return this.authService.login(request, reply);
